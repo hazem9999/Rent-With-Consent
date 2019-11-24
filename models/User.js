@@ -37,10 +37,6 @@ const UserSchema = new Schema({
     type: Number,
     required: false
   },
-  creditOrCash:{
-    type: String,
-    required: true
-  },
   creditBalance:{
       type: String,
       required: false
