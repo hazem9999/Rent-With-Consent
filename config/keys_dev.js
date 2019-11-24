@@ -1,4 +1,5 @@
 module.exports = {
-    mongoURI: 'mongodb+srv://hazem9999:gemseldeen@one-for-all-eoozu.mongodb.net/test?',
+    mongoURI: 'mongodb+srv://hazem9999:gemseldeen@rent-with-consent-eoozu.mongodb.net/test?retryWrites=true&w=majority',
     secretOrKey: 'verysecretkey' 
+    
 }
