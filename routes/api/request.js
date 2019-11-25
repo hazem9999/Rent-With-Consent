@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const Request = require("../../models/Request.js")
-const validator = require("../../validations/requestsValidations")
+const validator = require("../../validations/requestValidations")
 //get all requests
 router.get("/", async (req, res) => {
   const Requests = await Request.find()
@@ -65,7 +65,7 @@ router.put("/acceptrequest/:id", async (req, res) => {
     const id = req.params.id
     const requests =await Request.find({id})
     if  (!requests) return res.status(404).send({ error: 'request does not exist' })
-        const updatedrequests = await request.findOneAndUpdate({_id: id} , {status:'true'})
+        const updatedrequests = await Request.findOneAndUpdate({_id: id} , {status:'true'})
         res.json({ msg: "Status successfully set" })
       } catch (error) {
         // We will be handling the error later
@@ -78,7 +78,7 @@ router.put("/rejectrequest/:id", async (req, res) => {
     const id = req.params.id
     const requests =await Request.find({id})
     if  (!requests) return res.status(404).send({ error: 'request does not exist' })
-        const updatedrequests = await request.findOneAndUpdate({_id: id} , {status:'false'})
+        const updatedrequests = await Request.findOneAndUpdate({_id: id} , {status:'false'})
         res.json({ msg: "Status successfully set" })
       } catch (error) {
         // We will be handling the error later
