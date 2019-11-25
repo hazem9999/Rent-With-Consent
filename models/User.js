@@ -17,6 +17,10 @@ const UserSchema = new Schema({
     type: Number,
     required: true
   },
+  mobileNumber: {
+    type: Number,
+    required: true
+  },
   reviews: {
     type: String,
     required: false
@@ -33,7 +37,7 @@ const UserSchema = new Schema({
       type: String,
       required: false
   },
-  previousrents:{
+  previousRents:{
     type: Number,
     required: false
   },
