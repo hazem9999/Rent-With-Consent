@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const Request = require("../../models/Requests.js")
-const validator = require("../../validations/RequestsValidations")
+const validator = require("../../validations/requestsValidations")
 //get all requests
 router.get("/", async (req, res) => {
   const Requests = await Request.find()
@@ -42,30 +42,19 @@ router.get('/:id',async (req, res) => {
   if(!requests) return res.status(400).send({error:result.error.details[0].message})
   res.send(requests)
 });
-// //partner posting description and defining other attributes
-// //ID of PARTNER ONLY ENTERED IN THE POST OF THE TASK, MUST BE PARTNER
-// router.post("/partner/:id", async (req, res) => {
-//   const id = req.params.id
-//   try {
-//     const isValidated = validator.createValidation(req.body)
-//     if (isValidated.error)
-//       return res.status(400).send({ error: isValidated.error.details[0].message })
-//     //const newTask = await Task.create(req.body);
 
-//     const partnerm = await partner.findById(id);
-//     if (partnerm.id !== undefined) {
-//       const task = await Task.create(req.body);
-//       res.json({ msg: "Task was created successfully", data: task })
-//       partnerm.Task.push(task)
-
-//       const temp = await partnerm.save()
-//       res.send(partnerm)
-//     }
-//   } catch (error) {
-//     res.status(404).send({ error: "Only Partner can post" })
-//     console.log(error)
-//   }
-// });
+//create a new request
+router.post('/createRequest', async (req,res) => {
+    try {
+     const isValidated = validator.createValidation(req.body)
+     if (isValidated.error) return res.status(400).send({ error: isValidated.error.details[0].message })
+        const newRequest = await Request.create(req.body)
+        res.json({msg:'Request was created successfully', data: newRequest})
+    }
+    catch(error) {
+        console.log(error)
+    }  
+ })
 
 
 
