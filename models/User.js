@@ -38,8 +38,13 @@ const UserSchema = new Schema({
     required: false
   },
   creditBalance:{
-      type: String,
+      type: Number,
       required: false
-  }
+  },
+  driverLicence:{
+    type: String,
+    required: false
+},
+
 });
   module.exports = User = mongoose.model('User',UserSchema);

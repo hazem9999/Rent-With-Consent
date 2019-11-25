@@ -18,7 +18,7 @@ const OwnerSchema = new Schema({
     required: true
   },
   reviews: {
-    type: String,
+    type: Number,
     required: false
   },
   notification:{
@@ -34,8 +34,12 @@ const OwnerSchema = new Schema({
     required: false
   },
   creditBalance:{
-      type: String,
+      type: Number,
       required: false
+  },
+  mobileNumber:{
+    type: Number,
+    required: false
   }
 });
   module.exports = Owner = mongoose.model('Owner',OwnerSchema);

@@ -64,6 +64,10 @@ const VehicleSchema = new Schema({
   location:{
     type: String,
     required: true
+  },
+  licencePlate:{
+    type: String,
+    required: true
   }
 });
   module.exports = Vehicle = mongoose.model('Vehicle',VehicleSchema);
