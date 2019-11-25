@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router()
-const Request = require("../../models/Requests.js")
+const Request = require("../../models/Request.js")
 const validator = require("../../validations/requestsValidations")
 //get all requests
 router.get("/", async (req, res) => {
