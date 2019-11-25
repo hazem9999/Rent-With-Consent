@@ -4,6 +4,7 @@ const request = require("./routes/api/request");
 const vehicle = require("./routes/api/vehicle");
 const user = require('./routes/api/user')
 const cors = require('cors')
+const mongoose = require("mongoose");
 
 const db = require('./config/keys').mongoURI;
 
@@ -29,8 +30,8 @@ mongoose
 // Direct routes to appropriate files
 
 app.use("/api/owner", owner);
-app.use("/api/request", request);
-app.use("/api/vehicle", vehicle);
+//app.use("/api/request", request);
+//app.use("/api/vehicle", vehicle);
 app.use("/api/user", user)
 
 // Handling 404

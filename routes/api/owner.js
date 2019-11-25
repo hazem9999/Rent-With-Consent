@@ -8,6 +8,21 @@ router.get('/', async (req, res) => {
     const owners = await Owner.find();
     res.json({ data: owners })
 });
+
+router.get('/:id', async (req, res)=>{
+    try{
+        const ownerId = req.params.id
+        const ownerElement = await User.findById(ownerId)
+        if(!ownerElement){
+            res.status(404).send({error: 'We can not find what you are looking for'});
+        }else{
+            res.json({data: ownerElement})
+        }
+    }
+    catch(error){
+        res.status(404).send({error: 'Something went wrong'});
+    }
+})
 // Create a new Owner
 router.post('/createOwner', async (req,res) => {
     try {

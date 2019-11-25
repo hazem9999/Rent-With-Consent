@@ -61,3 +61,4 @@ router.post('/', async (req,res) => {
         res.status(404).send({error: 'Something went wrong'});
     }  
  })
+ module.exports = router;
