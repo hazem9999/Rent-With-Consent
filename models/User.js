@@ -45,9 +45,9 @@ const UserSchema = new Schema({
       type: Number,
       required: false
   },
-  driverLicence:{
+  driverLicense:{
     type: String,
-    required: false
+    required: true
 },
 
 });

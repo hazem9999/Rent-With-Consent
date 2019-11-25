@@ -13,7 +13,8 @@ module.exports = {
             currentlyRenting: Joi.boolean().required(),
             car: Joi.string(),
             previousRents: Joi.string(),
-            creditBalance: Joi.number()
+            creditBalance: Joi.number(),
+            driverLicense: Joi.string().required()
         }
 
         return Joi.validate(request, createSchema)
@@ -31,7 +32,8 @@ module.exports = {
             currentlyRenting: Joi.boolean(),
             car: Joi.string(),
             previousRents: Joi.string(),
-            creditBalance: Joi.number()
+            creditBalance: Joi.number(),
+            driverLicense: Joi.string()
         }
 
         return Joi.validate(request, updateSchema)
