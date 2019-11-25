@@ -31,7 +31,7 @@ const RequestSchema = new Schema({
     required: true
   },
   rentingFee:{
-      type: String,
+      type: Number,
       required: true
   },
   pickuptime:{
