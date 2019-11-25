@@ -30,8 +30,8 @@ mongoose
 // Direct routes to appropriate files
 
 app.use("/api/owner", owner);
-//app.use("/api/request", request);
-//app.use("/api/vehicle", vehicle);
+app.use("/api/request", request);
+app.use("/api/vehicle", vehicle);
 app.use("/api/user", user)
 
 // Handling 404
