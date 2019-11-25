@@ -32,6 +32,10 @@ const OwnerSchema = new Schema({
   previousrents:{
     type: Number,
     required: false
+  },
+  creditBalance:{
+      type: String,
+      required: false
   }
 });
   module.exports = Owner = mongoose.model('Owner',OwnerSchema);
