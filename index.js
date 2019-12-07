@@ -5,6 +5,7 @@ const vehicle = require("./routes/api/vehicle");
 const user = require('./routes/api/user')
 const cors = require('cors')
 const mongoose = require("mongoose");
+require('dotenv').config();
 
 const db = require('./config/keys').mongoURI;
 
