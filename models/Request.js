@@ -18,8 +18,8 @@ const RequestSchema = new Schema({
     type: Number,
     required: false
   },
-  isRented:{
-    type: Boolean,
+  available:{
+    type: String,
     required: true
   },
   vehicleName:{

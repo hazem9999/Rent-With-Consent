@@ -7,7 +7,7 @@ module.exports = {
             ownerID: Joi.string(),
             time: Joi.date(),
             duration: Joi.number(),
-            isRented: Joi.boolean().required(),
+            available: Joi.string().required(),
             vehicleName: Joi.string().required(),
             creditOrCash: Joi.string(),
             rentingFee: Joi.number().required(),
