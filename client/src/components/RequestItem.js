@@ -9,21 +9,23 @@ export class RequestItem extends Component {
            background: '#f4f4f4',
            padding: '25px',
            borderBottom: '1px #ccc dotted',
-           textDecoration: this.props.request.completed ? 'line-through' : 'none'
+           textDecoration: this.props.request.available=='Yes' ? 'none' : 'line-through'
        }
     }
     
 
 
     render() {
-        const { id, title } = this.props.request;
+        const { _id, vehicleName, rentingFee, available } = this.props.request;
         return (
             <div style={this.getStyle()}>
                 <p>
-                    {title}
+                    {vehicleName}    |   
+                    renting fee: {rentingFee}   |        
+                    Available?:  {available}
                     <ButtonGroup style = {btnStyle2}>
-                    <Button outline color = "danger" style = {btnStyle2} onClick={this.props.Canceled.bind(this, id)}>Cancel</Button>
-                    <Button outline color = "success" style = {btnStyle2} onClick={this.props.Rented.bind(this, id)}>Rent</Button>{' '}
+                    <Button outline color = "danger" style = {btnStyle2} onClick={this.props.Canceled.bind(this, _id)}>Cancel</Button>
+                    <Button outline color = "success" style = {btnStyle2} onClick={this.props.Rented.bind(this, _id)}>Rent</Button>{' '}
                     </ButtonGroup>
                     </p>
             </div>

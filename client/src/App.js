@@ -11,32 +11,32 @@ import Swal from 'sweetalert2'
 
 class App extends Component {
   state = {
-    requests: [{
-      id: 1,
-      title: 'Take out the trash',
-      completed: false
-    },
-    {
-      id: 2,
-      title: 'Dinner',
-      completed: true
-    },
-    {
-      id: 3,
-      title: 'Meeting',
-      completed: false
-    }]
+    requests: []
   }
 
   componentDidMount() {
-    axios.get('')
+    axios.get('http://localhost:3001/api/request')
+    .then(res => Object.values(res)[0])
+    .then(element => {
+      if(element.msg===undefined){ 
+      this.setState({requests:element.data})}
+    else{
+      alert(element.msg)
+    }
+    }).catch(err => {alert('please make sure you are logged in');
+    document.location.href = '/loginemployee'})
   }
 
   // Toggle Complete
   Rented = (id) => {
     this.setState({ requests: this.state.requests.map(request => {
-      if(request.id === id) {
-        request.completed = true
+      console.log(request._id);
+        console.log(id)
+      if(request._id === id) {
+        let URL = `http://localhost:3001/api/request/acceptrequest/${id}`
+        console.log('URL: ' + URL);
+        axios.put(`http://localhost:3001/api/request/acceptrequest/${id}`)
+        request.available = "no"
       }
       return request;
     })})
@@ -48,8 +48,9 @@ class App extends Component {
   }
   Canceled = (id) => {
     this.setState({ requests: this.state.requests.map(request => {
-      if(request.id === id) {
-        request.completed = false
+      if(request._id === id) {
+        axios.put(`http://localhost:3001/api/request/rejectrequest/${id}`)
+        request.available = "Yes"
       }
       return request;
     })})
@@ -81,7 +82,6 @@ addRequest = (title) => {
           <Route exact path='/' render= {props=>(
             <React.Fragment>
               <Header/>
-              <AddRequest addRequest={this.addRequest}/>
               <Requests requests={this.state.requests} Rented={this.Rented} Canceled={this.Canceled}
               delRequest={this.delRequest}/>
             </React.Fragment>

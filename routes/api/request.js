@@ -9,12 +9,12 @@ router.get("/", async (req, res) => {
 });
 
 router.get('/accepted', async (req,res) => {
-  const Requests = await Request.find({status: 'Accepted'})
+  const Requests = await Request.find({available: 'No'})
   res.json({ data: Requests })
 });
 
 router.get('/rejected', async (req,res) => {
-  const Requests = await Request.find({status: 'Rejected'})
+  const Requests = await Request.find({available: 'Yes'})
   res.json({ data: Requests })
 });
 // search for Request with userID
@@ -56,6 +56,24 @@ router.post('/createRequest', async (req,res) => {
     }  
  })
 
+ router.put("/update/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const request = await Request.find({id});
+    if (!request) return res.status(404).send({ error: "request does not exist" });
+    const isValidated = validator.updateValidation(req.body);
+    if (isValidated.error)
+      return res
+        .status(400)
+        .send({ error: isValidated.error.details[0].message });
+    
+    const updatedRequest = await Request.findOneAndUpdate({_id: id} , req.body);
+    res.json({ msg: "Request updated successfully" });
+  } catch (error) {
+    // We will be handling the error later
+    console.log(error);
+  }
+});
 
 
 //owner accepting or rejecting the request
@@ -65,7 +83,7 @@ router.put("/acceptrequest/:id", async (req, res) => {
     const id = req.params.id
     const requests =await Request.find({id})
     if  (!requests) return res.status(404).send({ error: 'request does not exist' })
-        const updatedrequests = await Request.findOneAndUpdate({_id: id} , {status:'true'})
+        const updatedrequests = await Request.findOneAndUpdate({_id: id} , {available:'No'})
         res.json({ msg: "Status successfully set" })
       } catch (error) {
         // We will be handling the error later
@@ -78,11 +96,12 @@ router.put("/rejectrequest/:id", async (req, res) => {
     const id = req.params.id
     const requests =await Request.find({id})
     if  (!requests) return res.status(404).send({ error: 'request does not exist' })
-        const updatedrequests = await Request.findOneAndUpdate({_id: id} , {status:'false'})
+        const updatedrequests = await Request.findOneAndUpdate({_id: id} , {available:'Yes'})
         res.json({ msg: "Status successfully set" })
       } catch (error) {
         // We will be handling the error later
         console.log(error)
   }
 })
+
 module.exports = router;
