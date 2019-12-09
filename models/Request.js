@@ -4,31 +4,31 @@ const RequestSchema = new Schema({
 
   userID: {
     type: String,
-    required: true
+    required: false
   },
   ownerID: {
     type: String,
-    required: true
+    required: false
   },
   time: {
     type: Date,
-    required: true
+    required: false
   },
   duration: {
     type: Number,
+    required: false
+  },
+  isRented:{
+    type: Boolean,
     required: true
   },
-  status:{
-    type: String,
-    required: true
-  },
-  vehicleID:{
+  vehicleName:{
       type: String,
       required: true
   },
   creditOrCash:{
     type: String,
-    required: true
+    required: false
   },
   rentingFee:{
       type: Number,
@@ -36,7 +36,7 @@ const RequestSchema = new Schema({
   },
   pickuptime:{
     type: Date,
-    required: true
+    required: false
 }
 
 });
